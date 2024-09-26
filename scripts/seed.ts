@@ -5,8 +5,8 @@ dotenv.config(); // Load environment variables as early as possible
 
 import mongoose from 'mongoose';
 import { faker } from '@faker-js/faker';
-import Company, { ICompany } from '../models/Company.js'; // Include .js extension
-import User, { IUser, UserRole } from '../models/User.js';     // Include .js extension
+import Company, { ICompany } from '../models/Company'; 
+import User, { IUser, UserRole } from '../models/User';  
 import bcrypt from 'bcryptjs';
 
 // Prevent seeding in production

@@ -6,7 +6,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 const SubscriptionButton = ({ priceId }: { priceId: string }) => {
   const handleSubscribe = async () => {
     const stripe = await stripePromise;
-    const response = await fetch('/api/checkout_sessions', {
+    const response = await fetch('/app/api/createcheckoutsession', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -28,7 +28,7 @@ const SubscriptionButton = ({ priceId }: { priceId: string }) => {
       onClick={handleSubscribe}
       className="px-3 py-2 bg-white text-gray-900 rounded-md hover:bg-gradient-to-tr hover:from-white hover:to-gray-300 transition"
     >
-      Subscribe
+      14-Day Free Trial
     </button>
   );
 };

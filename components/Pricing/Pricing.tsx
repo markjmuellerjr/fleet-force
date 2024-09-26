@@ -14,25 +14,25 @@ interface PricingPlan {
 const pricingPlans: PricingPlan[] = [
   {
     name: 'Basic',
-    price: '$19/month',
+    price: '$250/month',
     features: ['Real-Time Tracking', 'Automated Notifications'],
     priceId: 'price_basic',
   },
   {
     name: 'Standard',
-    price: '$49/month',
+    price: '$750/month',
     features: ['Real-Time Tracking', 'Automated Notifications', 'Comprehensive Analytics'],
     priceId: 'price_standard',
   },
   {
     name: 'Pro',
-    price: '$99/month',
+    price: '$1,250/month',
     features: ['All Standard Features', 'Seamless Integration'],
     priceId: 'price_pro',
   },
   {
     name: 'Enterprise',
-    price: '$199/month',
+    price: '$3,000/month',
     features: ['All Pro Features', 'Dedicated Support', 'Custom Solutions'],
     priceId: 'price_enterprise',
   },
