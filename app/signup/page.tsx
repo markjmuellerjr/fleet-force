@@ -16,8 +16,6 @@ const Signup: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const roles = ['Client', 'ServiceManager', 'Technician', 'Admin'];
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm((prev) => ({
       ...prev,
@@ -47,13 +45,16 @@ const Signup: React.FC = () => {
 
       // Redirect to sign-in page after successful signup
       router.push('/auth/signin');
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Something went wrong');
+      }
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="flex justify-center items-center min-h-screen">
       <form

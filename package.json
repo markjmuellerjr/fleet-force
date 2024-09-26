@@ -2,13 +2,12 @@
   "name": "fleetforce",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "ts-node --esm scripts/seed.js"
+    "seed": "ts-node scripts/seed.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",

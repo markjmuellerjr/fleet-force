@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./",
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,

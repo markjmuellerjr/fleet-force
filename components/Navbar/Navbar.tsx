@@ -5,13 +5,12 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
-import { motion } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const { data: session, status } = useSession();
-  const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false); // For mobile menu
+
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -46,17 +45,16 @@ const Navbar: React.FC = () => {
 
       {/* Right Side */}
       <div className="flex items-center space-x-4">
-        {/* Dark Mode Toggle */}
-        {/*
+        {/* Dark Mode Toggle 
         <button
           onClick={() => setDarkMode(!darkMode)}
           aria-label="Toggle Dark Mode"
           className="focus:outline-none"
         >
           {darkMode ? (
-            <SunIcon className="h-6 w-6 text-yellow-400" />
+            <span className="h-6 w-6 text-yellow-400">☀️</span>
           ) : (
-            <MoonIcon className="h-6 w-6 text-gray-200" />
+            <span className="h-6 w-6 text-gray-200">🌙</span>
           )}
         </button>
         */}
@@ -66,8 +64,8 @@ const Navbar: React.FC = () => {
           <p className="text-gray-300">Loading...</p>
         ) : session ? (
           <>
-            <Link href="/dashboard">
-              <a className="text-gray-300 hover:text-white transition">Dashboard</a>
+            <Link href="/dashboard" className="text-gray-300 hover:text-white transition">
+              Dashboard
             </Link>
             <button
               onClick={() => signOut()}
@@ -86,7 +84,7 @@ const Navbar: React.FC = () => {
             </button>
             <Link href="/signup" className="px-4 py-3 bg-gray-900 text-white rounded hover:bg-white hover:text-gray-900 border-2 border-white transition">
                 Sign Up
-              </Link> 
+            </Link> 
           </>
         )}
 
@@ -160,7 +158,8 @@ const Navbar: React.FC = () => {
               >
                 Sign In
               </button>
-               <Link href="/signup" className="px-4 py-3 bg-gray-900 text-white rounded hover:bg-white hover:text-gray-900 border-2 border-white transition">
+              <Link href="/signup" className="px-4 py-3 bg-gray-900 text-white rounded hover:bg-white hover:text-gray-900 border-2 border-white transition">
+                Sign Up
               </Link> 
             </>
           )}
@@ -169,5 +168,4 @@ const Navbar: React.FC = () => {
     </nav>
   );
 };
-
 export default Navbar;

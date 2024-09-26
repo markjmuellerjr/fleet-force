@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
       { message: 'User created successfully' },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Signup Error:', error);
     return NextResponse.json(
       { message: 'Internal Server Error' },

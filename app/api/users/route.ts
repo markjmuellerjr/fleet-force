@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     const users = await User.find().select('-password').lean();
 
     return NextResponse.json(users, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Get Users Error:', error);
     return NextResponse.json(
       { message: 'Internal Server Error' },
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
       { message: 'User created successfully' },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Create User Error:', error);
     return NextResponse.json(
       { message: 'Internal Server Error' },

@@ -7,7 +7,7 @@ import connectToDatabase from '../../../lib/mongodb';
 import ServiceOrder from '../../../models/ServiceOrder';
 import { IServiceOrder } from '../../../types/serviceOrder';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -16,7 +16,8 @@ export async function GET(req: NextRequest) {
   await connectToDatabase();
 
   try {
-    const { role, dealerId, email } = session.user;
+    const { role, email } = session.user;
+    const dealerId = (session.user as { dealerId?: string }).dealerId;
 
     let filter: Record<string, unknown> = {};
     if (role === 'Client') {
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
 
     const newOrder: IServiceOrder = await ServiceOrder.create({
       clientId: session.user.email,
-      dealerId: session.user.dealerId,
+      dealerId: (session.user as { dealerId?: string }).dealerId,
       machineryBrand,
       machineryModel,
       appointmentDate: new Date(appointmentDate),

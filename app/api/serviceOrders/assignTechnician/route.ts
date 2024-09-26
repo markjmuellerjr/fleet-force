@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       { message: 'Technician assigned successfully' },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Assign Technician Error:', error);
     return NextResponse.json(
       { message: 'Internal Server Error' },

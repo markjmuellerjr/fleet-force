@@ -17,9 +17,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'GET') {
     try {
-      const { role, dealerId, email } = session.user;
+      const { role, email } = session.user;
+      const dealerId = (session.user as { dealerId?: string }).dealerId;
 
-      let filter = {};
+      let filter: { clientId?: string; dealerId?: string } = {};
       if (role === 'Client') {
         filter = { clientId: email };
       } else if (role === 'ServiceManager' || role === 'Admin') {
@@ -31,8 +32,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const orders = await ServiceOrder.find(filter).sort({ appointmentDate: -1 });
       res.status(200).json(orders);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        res.status(500).json({ message: error.message });
+      } else {
+        res.status(500).json({ message: 'An unknown error occurred' });
+      }
     }
   } else if (req.method === 'POST') {
     // Create a new service order
@@ -46,7 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const newOrder = new ServiceOrder({
         clientId: session.user.email,
-        dealerId: session.user.dealerId,
+        dealerId: (session.user as { dealerId?: string }).dealerId,
         machineryBrand,
         machineryModel,
         appointmentDate: new Date(appointmentDate),
@@ -56,8 +61,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       await newOrder.save();
       res.status(201).json(newOrder);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        res.status(500).json({ message: error.message });
+      } else {
+        res.status(500).json({ message: 'An unknown error occurred' });
+      }
     }
   } else {
     res.setHeader('Allow', ['GET', 'POST']);

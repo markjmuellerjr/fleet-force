@@ -17,7 +17,7 @@ const ServiceOrderSchema: Schema = new Schema({
   machineryBrand: { type: String, required: true },
   machineryModel: { type: String, required: true },
   appointmentDate: { type: Date, required: true },
-  status: { type: String, enum: ['Scheduled', 'In Progress', 'Completed', 'Cancelled'], default: 'Scheduled' },
+  status: { type: String, enum: ['Scheduled', 'In Progress', 'On Hold', 'Completed', 'Cancelled'], default: 'Scheduled' },
   invoiceId: { type: String },
   paymentStatus: { type: String, enum: ['Pending', 'Paid'], default: 'Pending' },
 }, { timestamps: true });

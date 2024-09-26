@@ -2,10 +2,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import SubscriptionButton from '../SubscriptionButton';
 const Hero: React.FC = () => {
   return (
     <section className="text-center py-20 mt-10">

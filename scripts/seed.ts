@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fleetforce';
 
 // Define roles
-const roles: UserRole[] = ['Client', 'ServiceManager', 'Technician', 'Admin'];
+// const roles: UserRole[] = ['Client', 'ServiceManager', 'Technician', 'Admin'];
 
 // Number of companies and users per company
 const NUM_COMPANIES = parseInt(process.env.NUM_COMPANIES || '3', 10);
